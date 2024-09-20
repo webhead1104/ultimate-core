@@ -30,7 +30,7 @@ public class Utils {
         if (HyperCore.getInstance().isPets()) {
             PetData petData = HyperPets.getInstance().getApi().getPetData(uuid);
             if (petData != null && HyperPets.getInstance().getApi().getPet(petData) != null)
-                currentPet = HyperPets.getInstance().getApi().getPet(petData).getDisplayName();
+                currentPet = HyperPets.getInstance().getApi().getPet(petData).displayName();
         }
         HyperSkillsAPI api = HyperSkills.getInstance().getApi();
         return new ArrayList<>(Arrays.asList(

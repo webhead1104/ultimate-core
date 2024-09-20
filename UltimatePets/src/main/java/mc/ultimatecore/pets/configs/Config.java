@@ -41,7 +41,7 @@ public class Config extends YAMLFile {
         selectedPetName = getConfig().getString("selectedPetName");
         selectedPetNone = getConfig().getString("selectedPetNone");
         for(Tier tier : HyperPets.getInstance().getTiers().getTierList().values())
-            petItems.put(tier, Utils.getItemFromConfig(getConfig(), "petItems."+tier.getName()));
+            petItems.put(tier, Utils.getItemFromConfig(getConfig(), "petItems."+tier.name()));
         skillsXP = getConfig().getDouble("xp.skillsPoints");
         blockBreakXP = getConfig().getDouble("xp.blockBreak");
         debug = getConfig().getBoolean("DEBUG");

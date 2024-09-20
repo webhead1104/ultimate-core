@@ -1,26 +1,20 @@
 package mc.ultimatecore.pets.objects.stats;
 
-import com.archyx.aureliumskills.stats.Stat;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import mc.ultimatecore.pets.HyperPets;
-import org.bukkit.entity.Player;
+import com.archyx.aureliumskills.stats.*;
+import mc.ultimatecore.pets.*;
+import org.bukkit.entity.*;
 
-import java.util.Map;
+import java.util.*;
 
-@AllArgsConstructor
-@Getter
-public class AurelliumStats implements PetStats{
-    private final Map<Stat, Double> petAbilities;
-
+public record AurelliumStats(Map<Stat, Double> petAbilities) implements PetStats {
     @Override
-    public void addStats(Player player){
+    public void addStats(Player player) {
         petAbilities.forEach((ability, amount) -> HyperPets.getInstance().getAddonsManager().getAurelliumSkills()
                 .addStats(player, ability, amount));
     }
 
     @Override
-    public void removeStats(Player player){
+    public void removeStats(Player player) {
         petAbilities.forEach((ability, amount) -> HyperPets.getInstance().getAddonsManager().getAurelliumSkills()
                 .removeStats(player, ability));
     }

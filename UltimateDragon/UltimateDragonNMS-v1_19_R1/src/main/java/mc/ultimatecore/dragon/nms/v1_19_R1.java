@@ -18,8 +18,7 @@ public class v1_19_R1 extends NMS {
         EntityEnderDragon entityEnderDragon = ((CraftEnderDragon) enderDragon).getHandle();
         entityEnderDragon.fH().a(DragonControllerPhase.b);
         EntityLiving entityLiving = entity instanceof Player ? ((CraftPlayer) entity).getHandle() : ((CraftArmorStand) entity).getHandle();
-        if (entityEnderDragon.fH().a() instanceof DragonControllerStrafe) {
-            DragonControllerStrafe charge = (DragonControllerStrafe) entityEnderDragon.fH().a();
+        if (entityEnderDragon.fH().a() instanceof DragonControllerStrafe charge) {
             charge.a(entityLiving);
         }
     }

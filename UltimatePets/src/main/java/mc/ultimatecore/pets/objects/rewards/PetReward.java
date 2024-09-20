@@ -1,18 +1,12 @@
 package mc.ultimatecore.pets.objects.rewards;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+import org.bukkit.*;
+import org.bukkit.entity.*;
 
-import java.util.List;
+import java.util.*;
 
-@Getter
-@AllArgsConstructor
-public class PetReward {
-    private final List<String> commands;
-
-    public void execute(Player player){
+public record PetReward(List<String> commands) {
+    public void execute(Player player) {
         commands.forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%player%", player.getName())));
     }
 }

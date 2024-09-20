@@ -14,10 +14,10 @@ public class MySQL extends SQL {
     public HikariConfig getDatabase(Credentials credentials) {
         final HikariConfig hikari = new HikariConfig();
         hikari.setPoolName(plugin.getPluginName() + "-" + POOL_COUNTER.getAndIncrement());
-        hikari.setJdbcUrl("jdbc:mysql://" + credentials.getHost() + ":" + credentials.getPort() + "/" + credentials.getDatabaseName());
+        hikari.setJdbcUrl("jdbc:mysql://" + credentials.host() + ":" + credentials.port() + "/" + credentials.databaseName());
         hikari.setConnectionTestQuery("SELECT 1");
-        hikari.setUsername(credentials.getUserName());
-        hikari.setPassword(credentials.getPassword());
+        hikari.setUsername(credentials.userName());
+        hikari.setPassword(credentials.password());
         hikari.setMinimumIdle(MINIMUM_IDLE);
         hikari.setMaxLifetime(MAX_LIFETIME);
         hikari.setConnectionTimeout(CONNECTION_TIMEOUT);

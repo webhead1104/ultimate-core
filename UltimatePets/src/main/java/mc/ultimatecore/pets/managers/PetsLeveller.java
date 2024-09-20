@@ -53,8 +53,8 @@ public class PetsLeveller {
         PetData petData = user.getPlayerPet().getPetData();
         int level = petData.getLevel();
         Tier tier = petData.getTier();
-        Optional<Tier> nextTier = plugin.getTiers().getNextTier(tier.getTierValue());
-        int maxLevel = pet.getMaxLevel(tier.getName());
+        Optional<Tier> nextTier = plugin.getTiers().getNextTier(tier.tierValue());
+        int maxLevel = pet.getMaxLevel(tier.name());
         //Checking if it's the limit
         if (level == maxLevel && !nextTier.isPresent()) {
             return;
@@ -63,7 +63,7 @@ public class PetsLeveller {
         petData.addXP(toAddXP);
         Bukkit.getServer().getPluginManager().callEvent(new PetXPGainEvent(player, pet, toAddXP));
         double xp = petData.getXp();
-        double maxXP = pet.getLevelRequirement(tier.getName(), level);
+        double maxXP = pet.getLevelRequirement(tier.name(), level);
         if (xp < maxXP) {
             return;
         }
@@ -72,17 +72,17 @@ public class PetsLeveller {
             petData.setTier(nextTier.get());
             petData.setLevel(1);
             petData.setXp(0);
-            plugin.getMessages().getTierLevelUPMessage().forEach(message -> player.sendMessage(Utils.color(message.replace("%tier%", nextTier.get().getDisplayName()))));
+            plugin.getMessages().getTierLevelUPMessage().forEach(message -> player.sendMessage(Utils.color(message.replace("%tier%", nextTier.get().displayName()))));
         } else {
             int newLevel = level + 1;
             petData.setLevel(newLevel);
             petData.setXp(0);
             Bukkit.getServer().getPluginManager().callEvent(new PetLevelUPEvent(player, pet, newLevel));
-            player.sendMessage(Utils.color(plugin.getMessages().getMessage("levelUPMessage").replace("%level%", String.valueOf(newLevel)).replace("%name%", Utils.color(pet.getDisplayName()))));
+            player.sendMessage(Utils.color(plugin.getMessages().getMessage("levelUPMessage").replace("%level%", String.valueOf(newLevel)).replace("%name%", Utils.color(pet.displayName()))));
         }
 
         playSound(player, plugin.getConfiguration().petLevelUPSound);
-        PetReward reward = pet.getPetReward(tier.getName(), level + 1);
+        PetReward reward = pet.getPetReward(tier.name(), level + 1);
         if (reward != null) {
             reward.execute(player);
         }

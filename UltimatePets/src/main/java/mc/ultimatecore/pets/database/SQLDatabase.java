@@ -49,7 +49,7 @@ public abstract class SQLDatabase extends Database {
     
     @Override
     public void addIntoPetsDatabase(PetData petData) {
-        this.execute("INSERT IGNORE INTO " + PETS_TABLE_NAME + " VALUES(?,?,?,?,?)", petData.getPetUUID().toString(), petData.getPetName(), petData.getLevel(), petData.getXp(), petData.getTier().getName());
+        this.execute("INSERT IGNORE INTO " + PETS_TABLE_NAME + " VALUES(?,?,?,?,?)", petData.getPetUUID().toString(), petData.getPetName(), petData.getLevel(), petData.getXp(), petData.getTier().name());
     }
     
     

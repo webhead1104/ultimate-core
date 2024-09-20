@@ -18,6 +18,7 @@ import java.util.HashMap;
 
 @Getter
 public class HyperTrades extends JavaPlugin {
+    @Getter
     private static HyperTrades instance;
     private Config configuration;
     private Messages messages;
@@ -37,7 +38,7 @@ public class HyperTrades extends JavaPlugin {
         commandManager = new CommandManager("hypertrades");
 
         registerListeners(new InventoryClickListener(), new TradeSetupListener());
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(getInstance(), this::saveTradesManager, 0L, (1200 * 60));
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, this::saveTradesManager, 0L, (1200 * 60));
         Bukkit.getConsoleSender().sendMessage(StringUtils.color("&e" + getDescription().getName() + " Has been enabled!"));
 
         if (Bukkit.getPluginManager().getPlugin("Vault") != null){
@@ -84,7 +85,4 @@ public class HyperTrades extends JavaPlugin {
         tradesManager.reload();
     }
 
-    public static HyperTrades getInstance(){
-        return instance;
-    }
 }

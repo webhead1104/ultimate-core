@@ -65,7 +65,7 @@ public class HyperDragons extends UltimatePlugin {
         loadFiles();
         //Database
         Credentials credentials = Credentials.fromConfig(configuration.getConfig());
-        database = credentials.getDatabaseType() == DatabaseType.MySQL ? new MySQLDatabase(this, credentials) : new SQLiteDatabase(this, credentials);
+        database = credentials.databaseType() == DatabaseType.MySQL ? new MySQLDatabase(this, credentials) : new SQLiteDatabase(this, credentials);
         //Managers
         addonsManager = new AddonsManager(this);
         schematicManager = new SchematicManager(this);
@@ -86,13 +86,13 @@ public class HyperDragons extends UltimatePlugin {
 
 
     private NMS setupNMS() {
-        String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+        String version = Bukkit.getBukkitVersion().split("-")[0];
         try {
             return (NMS) Class.forName("mc.ultimatecore.dragon.nms." + version).newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            getLogger().warning("Unsupported Version Detected: " + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
+            getLogger().warning("Unsupported Version Detected: " + Bukkit.getBukkitVersion().split("-")[0]);
         }
         return null;
     }

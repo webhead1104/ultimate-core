@@ -1,16 +1,10 @@
 package mc.ultimatecore.pets.managers;
 
-import mc.ultimatecore.pets.HyperPets;
-import mc.ultimatecore.pets.objects.DebugType;
-import mc.ultimatecore.pets.objects.PetData;
-import mc.ultimatecore.pets.objects.Tier;
-import mc.ultimatecore.skills.objects.perks.*;
-import org.bukkit.Bukkit;
+import mc.ultimatecore.pets.*;
+import mc.ultimatecore.pets.objects.*;
+import org.bukkit.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PetsManager {
 
@@ -54,7 +48,7 @@ public class PetsManager {
         this.plugin.getPluginDatabase().setPetLevel(id, petData.getLevel());
         this.plugin.getPluginDatabase().setPetXP(id, petData.getXp());
         this.plugin.getPluginDatabase().setPetName(id, petData.getPetName());
-        this.plugin.getPluginDatabase().setPetTier(id, petData.getTier().getName());
+        this.plugin.getPluginDatabase().setPetTier(id, petData.getTier().name());
         petsCache.remove(id);
     }
 

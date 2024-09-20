@@ -5,15 +5,16 @@ import mc.ultimatecore.crafting.commands.CommandManager;
 import mc.ultimatecore.crafting.configs.*;
 import mc.ultimatecore.crafting.listeners.*;
 import mc.ultimatecore.crafting.managers.PlayerManager;
-import mc.ultimatecore.crafting.nms.*;
+import mc.ultimatecore.crafting.nms.VanillaCraftingSource;
 import mc.ultimatecore.crafting.utils.Utils;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.List;
 
 public class HyperCrafting extends JavaPlugin {
 
@@ -67,13 +68,14 @@ public class HyperCrafting extends JavaPlugin {
 
 
     private VanillaCraftingSource setupNMS() {
-        String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+        String version = Bukkit.getBukkitVersion().split("-")[0];
         try {
             return (VanillaCraftingSource) Class.forName("mc.ultimatecore.crafting.nms." + version).getDeclaredConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            getLogger().warning("Unsupported Version Detected: " + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
+            getLogger().warning("Unsupported Version Detected: " + Bukkit.getBukkitVersion().split("-")[0]);
         }
 
         return null;

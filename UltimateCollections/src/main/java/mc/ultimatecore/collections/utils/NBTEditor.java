@@ -29,7 +29,7 @@ public final class NBTEditor {
     
     private static final Map<Class<?>, Field> NBTTagFieldCache;
     
-    private static final String VERSION = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+    private static final String VERSION = Bukkit.getBukkitVersion().split("-")[0];
     
     private static final MinecraftVersion LOCAL_VERSION = MinecraftVersion.get(VERSION);
     

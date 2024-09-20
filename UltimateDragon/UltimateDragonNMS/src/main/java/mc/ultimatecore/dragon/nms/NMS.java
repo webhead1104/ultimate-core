@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 
 public abstract class NMS {
     
-    protected final String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+    protected final String version = Bukkit.getBukkitVersion().split("-")[0];
     ;
     
     public void setAFK(EnderDragon enderDragon) {

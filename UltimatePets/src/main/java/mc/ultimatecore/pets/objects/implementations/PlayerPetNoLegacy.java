@@ -41,7 +41,7 @@ public class PlayerPetNoLegacy extends PlayerPet implements Listener {
         if (user == null) return;
         if (user.isHidePets()) return;
         Pet pet = getPet();
-        ItemStack head = Utils.makeItem(new Item(XMaterial.PLAYER_HEAD, 1, pet.getTexture(), 1, "", Collections.singletonList("")));
+        ItemStack head = Utils.makeItem(new Item(XMaterial.PLAYER_HEAD, 1, pet.texture(), 1, "", Collections.singletonList("")));
         if (head == null) return;
         createPetStand(head, pet);
     }
@@ -59,14 +59,14 @@ public class PlayerPetNoLegacy extends PlayerPet implements Listener {
         if (pet == null) return;
         if (petData == null) return;
         Player player = getPlayer();
-        pet.removeStats(player, petData.getTier().getName(), petData.getLevel() - 1);
-        pet.applyNewStats(player, petData.getTier().getName(), petData.getLevel());
+        pet.removeStats(player, petData.getTier().name(), petData.getLevel() - 1);
+        pet.applyNewStats(player, petData.getTier().name(), petData.getLevel());
         if (nameEntity != null)
-            nameEntity.setCustomName(Utils.color(pet.getEntityName()
-                                                    .replaceAll("%pet_name%", pet.getDisplayName())
+            nameEntity.setCustomName(Utils.color(pet.entityName()
+                                                    .replaceAll("%pet_name%", pet.displayName())
                                                     .replaceAll("%player%", getPlayer().getName())
                                                     .replaceAll("%pet_level%", String.valueOf(petData.getLevel()))
-                                                    .replaceAll("%pet_tier%", petData.getTier().getDisplayName())
+                                                    .replaceAll("%pet_tier%", petData.getTier().displayName())
             ));
     }
     
@@ -80,9 +80,9 @@ public class PlayerPetNoLegacy extends PlayerPet implements Listener {
         if (pet == null) return;
         
         //Applying Abilities and Potions
-        pet.applyNewStats(player, petData.getTier().getName(), petData.getLevel());
+        pet.applyNewStats(player, petData.getTier().name(), petData.getLevel());
         
-        pet.getPetCommands().apply(player, EquipPetType.EQUIP);
+        pet.petCommands().apply(player, EquipPetType.EQUIP);
         initPet();
     }
     
@@ -95,9 +95,9 @@ public class PlayerPetNoLegacy extends PlayerPet implements Listener {
         if (!serverClose) user.spawnedID = -1;
         Pet pet = getPet();
         
-        pet.removeStats(player, petData.getTier().getName(), petData.getLevel());
+        pet.removeStats(player, petData.getTier().name(), petData.getLevel());
         
-        pet.getPetCommands().apply(player, EquipPetType.UNEQUIP);
+        pet.petCommands().apply(player, EquipPetType.UNEQUIP);
         Bukkit.getServer().getPluginManager().callEvent(new PetDespawnEvent(player, getPet(), petData));
     }
     
@@ -161,11 +161,11 @@ public class PlayerPetNoLegacy extends PlayerPet implements Listener {
         nameEntity.setVisible(false);
         nameEntity.setGravity(false);
         nameEntity.setCustomNameVisible(true);
-        nameEntity.setCustomName(Utils.color(pet.getEntityName()
-                                                .replaceAll("%pet_name%", pet.getDisplayName())
+        nameEntity.setCustomName(Utils.color(pet.entityName()
+                                                .replaceAll("%pet_name%", pet.displayName())
                                                 .replaceAll("%player%", getPlayer().getName())
                                                 .replaceAll("%pet_level%", String.valueOf(petData.getLevel()))
-                                                .replaceAll("%pet_tier%", petData.getTier().getDisplayName())
+                                                .replaceAll("%pet_tier%", petData.getTier().displayName())
         ));
     }
     

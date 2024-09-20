@@ -1,10 +1,13 @@
 package mc.ultimatecore.pets.api.events;
 
-import mc.ultimatecore.pets.objects.Pet;
-import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
-import org.bukkit.event.player.PlayerEvent;
+import lombok.*;
+import mc.ultimatecore.pets.objects.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
+import org.bukkit.event.player.*;
+import org.jetbrains.annotations.*;
 
+@Getter
 public class PetLevelUPEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
 
@@ -18,15 +21,8 @@ public class PetLevelUPEvent extends PlayerEvent {
         this.petLevel = petLevel;
     }
 
+    @NotNull
     public final HandlerList getHandlers() {
         return handlers;
-    }
-
-    public Pet getPet() {
-        return pet;
-    }
-
-    public int getPetLevel() {
-        return petLevel;
     }
 }

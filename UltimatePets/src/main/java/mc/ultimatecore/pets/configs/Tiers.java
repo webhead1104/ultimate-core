@@ -57,6 +57,6 @@ public class Tiers extends YAMLFile {
     }
     
     public Optional<Tier> getNextTier(int currentTier) {
-        return tierList.values().stream().filter(tier -> tier.getTierValue() > currentTier).min(Comparator.comparingInt(Tier::getTierValue));
+        return tierList.values().stream().filter(tier -> tier.tierValue() > currentTier).min(Comparator.comparingInt(Tier::tierValue));
     }
 }

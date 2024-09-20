@@ -1,18 +1,11 @@
 package mc.ultimatecore.helper.database;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import org.apache.commons.lang.Validate;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.apache.commons.lang.*;
+import org.bukkit.configuration.file.*;
 
-@Getter
-@AllArgsConstructor
-public class Credentials {
-    
-    private final String host, databaseName, userName, password;
-    private final DatabaseType databaseType;
-    private final int port;
-    
+public record Credentials(String host, String databaseName, String userName, String password, DatabaseType databaseType,
+                          int port) {
+
     public static Credentials fromConfig(FileConfiguration config) {
         String host = config.getString("mysql.host");
         String dbName = config.getString("mysql.database");
@@ -20,7 +13,7 @@ public class Credentials {
         String password = config.getString("mysql.password");
         int port = config.getInt("mysql.port");
         DatabaseType databaseType = DatabaseType.valueOf(config.getString("database_type"));
-        
+
         Validate.notNull(host);
         Validate.notNull(dbName);
         Validate.notNull(userName);

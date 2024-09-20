@@ -29,11 +29,11 @@ public class Requirements extends YAMLFile {
         levelRequirements = new HashMap<>();
         //------------------------------------------------//
         for(Tier tier : HyperPets.getInstance().getTiers().getTierList().values()){
-            ConfigurationSection mapSection = getConfig().getConfigurationSection(tier.getName());
+            ConfigurationSection mapSection = getConfig().getConfigurationSection(tier.name());
             if(mapSection != null){
                 HashMap<Integer, Double> levels = new HashMap<>();
-                mapSection.getKeys(false).forEach(level -> levels.put(Integer.valueOf(level), getConfig().getDouble(tier.getName()+"."+level)));
-                levelRequirements.put(tier.getName(), levels);
+                mapSection.getKeys(false).forEach(level -> levels.put(Integer.valueOf(level), getConfig().getDouble(tier.name()+"."+level)));
+                levelRequirements.put(tier.name(), levels);
             }
         }
         /*for(String tier : levelRequirements.keySet()){

@@ -72,7 +72,7 @@ public class Pets extends YAMLFile {
             nbtItem.setString("petName", petID);
             nbtItem.setInteger("petLevel", 1);
             nbtItem.setInteger("petXP", 0);
-            nbtItem.setString("petTier", tier.getName());
+            nbtItem.setString("petTier", tier.name());
             return nbtItem.getItem();
         }
         return null;
@@ -87,16 +87,16 @@ public class Pets extends YAMLFile {
         if(petManager != null && petManager.getPetData().getPetName().equals(petName)) {
             if(petManager.getPetData().getPetUUID() == petUUID){
                 petManager.removePet(false);
-                player.sendMessage(Utils.color(HyperPets.getInstance().getMessages().getMessage("petDeactivated").replace("%name%", pet.getDisplayName())));
+                player.sendMessage(Utils.color(HyperPets.getInstance().getMessages().getMessage("petDeactivated").replace("%name%", pet.displayName())));
             }else{
-                player.sendMessage(Utils.color(HyperPets.getInstance().getMessages().getMessage("alreadyActivated").replace("%name%", pet.getDisplayName())));
+                player.sendMessage(Utils.color(HyperPets.getInstance().getMessages().getMessage("alreadyActivated").replace("%name%", pet.displayName())));
             }
         }else{
             if(petManager == null){
                 user.setPlayerPet(player.getUniqueId(), petUUID).createPet();
-                player.sendMessage(Utils.color(HyperPets.getInstance().getMessages().getMessage("petActivated").replace("%name%", pet.getDisplayName())));
+                player.sendMessage(Utils.color(HyperPets.getInstance().getMessages().getMessage("petActivated").replace("%name%", pet.displayName())));
             }else{
-                player.sendMessage(Utils.color(HyperPets.getInstance().getMessages().getMessage("alreadyActivated").replace("%name%", pet.getDisplayName())));
+                player.sendMessage(Utils.color(HyperPets.getInstance().getMessages().getMessage("alreadyActivated").replace("%name%", pet.displayName())));
             }
         }
     }

@@ -45,7 +45,7 @@ public class AddonsManager extends CoreManagerImpl {
     }
 
     private VersionHook loadWorldEdit() {
-        String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+        String version = Bukkit.getBukkitVersion().split("-")[0];
         try {
             return (VersionHook) Class.forName("mc.ultimatecore.helper." + version + ".VersionHookImpl").getConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | ClassNotFoundException | NoSuchMethodException e) {

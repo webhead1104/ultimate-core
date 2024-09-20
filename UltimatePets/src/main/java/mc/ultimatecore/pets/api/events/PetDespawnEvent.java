@@ -1,11 +1,14 @@
 package mc.ultimatecore.pets.api.events;
 
+import lombok.*;
 import mc.ultimatecore.pets.objects.Pet;
 import mc.ultimatecore.pets.objects.PetData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
+import org.jetbrains.annotations.*;
 
+@Getter
 public class PetDespawnEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
 
@@ -19,15 +22,8 @@ public class PetDespawnEvent extends PlayerEvent {
         this.petData = petData;
     }
 
+    @NotNull
     public final HandlerList getHandlers() {
         return handlers;
-    }
-
-    public Pet getPet() {
-        return pet;
-    }
-
-    public PetData getPetData() {
-        return petData;
     }
 }

@@ -6,8 +6,8 @@ import java.util.zip.ZipOutputStream
 
 plugins {
     `java-library`
-    id("com.github.johnrengelman.shadow") version "7.1.2" apply false
-    id("xyz.jpenilla.run-paper") version "1.0.6"
+    id("com.gradleup.shadow") version "8.3.2" apply false
+    id("xyz.jpenilla.run-paper") version "2.3.1"
 
     // TODO:
     /* id("net.minecrell.plugin-yml.bukkit") apply true
@@ -24,8 +24,8 @@ buildscript {
         maven("https://plugins.gradle.org/m2/")
     }
     dependencies {
-        classpath("io.freefair.gradle:lombok-plugin:6.3.0")
-        classpath("gradle.plugin.com.github.johnrengelman:shadow:7.1.2")
+        classpath("io.freefair.gradle:lombok-plugin:8.10")
+        classpath("com.gradleup.shadow:shadow-gradle-plugin:8.3.2")
     }
 }
 
@@ -45,9 +45,9 @@ bundleJars.doFirst {
 }
 
 tasks.runServer {
-    minecraftVersion("1.17.1")
+    minecraftVersion("1.20.6")
     javaLauncher.set(javaToolchains.launcherFor {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(21))
     })
 }
 
@@ -57,7 +57,7 @@ allprojects {
 
     apply(plugin = "java")
     apply(plugin = "io.freefair.lombok")
-    apply(plugin = "com.github.johnrengelman.shadow")
+    apply(plugin = "com.gradleup.shadow")
 
     repositories {
         mavenLocal()
@@ -108,7 +108,7 @@ allprojects {
 
     java {
         toolchain {
-            toolchain.languageVersion.set(JavaLanguageVersion.of(16))
+            toolchain.languageVersion.set(JavaLanguageVersion.of(21))
         }
     }
 }

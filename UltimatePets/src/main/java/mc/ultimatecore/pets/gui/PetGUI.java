@@ -58,7 +58,7 @@ public class PetGUI implements GUI {
 
         int count = 0;
         PetData playerPet = plugin.getApi().getPetData(user.uuid);
-        String currentPet = playerPet == null ? plugin.getMessages().getMessage("noPet") : plugin.getPets().getPetByID(playerPet.getPetName()).getDisplayName();
+        String currentPet = playerPet == null ? plugin.getMessages().getMessage("noPet") : plugin.getPets().getPetByID(playerPet.getPetName()).displayName();
         for (Integer slot : plugin.getInventories().petSlots) {
             List<Integer> petIDs = user.getInventoryPets();
 

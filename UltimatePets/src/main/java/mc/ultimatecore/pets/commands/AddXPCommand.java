@@ -47,7 +47,7 @@ public class AddXPCommand extends Command {
         if(args.length == 3)
             return new ArrayList<>(HyperPets.getInstance().getPets().pets.keySet());
         if(args.length == 4)
-            return HyperPets.getInstance().getTiers().getTierList().values().stream().map(Tier::getName).collect(Collectors.toList());
+            return HyperPets.getInstance().getTiers().getTierList().values().stream().map(Tier::name).collect(Collectors.toList());
         return null;
     }
 }

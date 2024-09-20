@@ -51,16 +51,13 @@ public class User {
     NO SQL
      */
     public PetGUI petGUI;
+    @Getter
     private PlayerPet playerPet;
     private boolean hidePets;
 
     public PetGUI getPetGUI() {
         if(petGUI == null) petGUI = new PetGUI(this);
         return petGUI;
-    }
-
-    public PlayerPet getPlayerPet() {
-        return playerPet;
     }
 
     public PlayerPet setPlayerPet(UUID uuid, int petUUID) {

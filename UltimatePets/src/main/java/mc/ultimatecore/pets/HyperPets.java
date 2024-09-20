@@ -25,6 +25,7 @@ import java.util.*;
 @Getter
 public class HyperPets extends UltimatePlugin {
 
+    @Getter
     private static HyperPets instance;
     private Config configuration;
     private Messages messages;
@@ -59,18 +60,7 @@ public class HyperPets extends UltimatePlugin {
 
         Credentials credentials = Credentials.fromConfig(configuration.getConfig());
 
-        pluginDatabase = credentials.getDatabaseType() == DatabaseType.MySQL ? new MySQLDatabase(this, credentials) : new SQLiteDatabase(this, credentials);
-
-//        try {
-//            pluginDatabase.createTablesAsync().get();
-//        } catch (InterruptedException | ExecutionException e) {
-//            Bukkit.shutdown();
-//            return;
-//        }
-
-
-//        petsManager = new PetsManager(this);
-//        userManager = new UserManager(this);
+        pluginDatabase = credentials.databaseType() == DatabaseType.MySQL ? new MySQLDatabase(this, credentials) : new SQLiteDatabase(this, credentials);
 
         pluginDatabase.createTablesAsync().thenRun(() -> {
             petsManager = new PetsManager(this);
@@ -96,19 +86,11 @@ public class HyperPets extends UltimatePlugin {
     }
 
     public void loadNms() {
-        try {
-            nms = (NMS) Class.forName("mc.ultimatecore.pets.nms." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]).newInstance();
-        } catch (ClassNotFoundException e) {
-            getLogger().warning("Unsupported Version Detected: " + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
-            Bukkit.getPluginManager().disablePlugin(this);
-        } catch (IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-            Bukkit.getPluginManager().disablePlugin(this);
-        }
+        nms = new VersionMatcher().match();
     }
 
     public void sendErrorMessage(Exception e) {
-        e.printStackTrace();
+        getLogger().info("error" + e);
     }
 
     public void registerListeners(Listener... listener) {
@@ -135,20 +117,11 @@ public class HyperPets extends UltimatePlugin {
         pets.reload();
     }
 
-    public static HyperPets getInstance() {
-        return instance;
-    }
-
     public void sendDebug(String message, DebugType debugType) {
         if (!configuration.debug) return;
         if (debugType == DebugType.LOG)
             getLogger().info(message);
         else
             Bukkit.getConsoleSender().sendMessage(Utils.color(message));
-    }
-
-    @Override
-    public String getPluginName() {
-        return getDescription().getName();
     }
 }

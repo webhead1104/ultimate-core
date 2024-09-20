@@ -34,8 +34,10 @@ public class TradeObject {
 
     private String category;
 
+    @Getter
     private final TradingOptionsGUI tradingOptionsGUI;
 
+    @Getter
     private final TradesSetupGUI shopAdminGUI;
 
     public TradeObject(String key, String displayName, List<String> description, ItemStack tradeMaterial, ItemStack costItem, int slot, int page, double moneyCost, String permission, String category) {
@@ -52,13 +54,4 @@ public class TradeObject {
         tradingOptionsGUI = new TradingOptionsGUI(this);
         shopAdminGUI = new TradesSetupGUI(this);
     }
-
-    public TradingOptionsGUI getTradingOptionsGUI() {
-        return tradingOptionsGUI;
-    }
-
-    public TradesSetupGUI getShopAdminGUI() {
-        return shopAdminGUI;
-    }
-
 }

@@ -21,8 +21,7 @@ public class InventoryClickListener implements Listener {
 
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
-        if (event.getInventory().getHolder() != null && event.getInventory().getHolder() instanceof GUI) {
-            GUI gui = (GUI) event.getInventory().getHolder();
+        if (event.getInventory().getHolder() != null && event.getInventory().getHolder() instanceof GUI gui) {
             if(gui.saveOnClose())
                 HyperTrades.getInstance().getTradesManager().save();
         }

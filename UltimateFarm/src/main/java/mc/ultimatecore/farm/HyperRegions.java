@@ -1,29 +1,25 @@
 package mc.ultimatecore.farm;
 
-import com.cryptomorin.xseries.XMaterial;
-import lombok.Getter;
-import mc.ultimatecore.farm.commands.CommandManager;
-import mc.ultimatecore.farm.configs.Config;
-import mc.ultimatecore.farm.configs.Guardians;
-import mc.ultimatecore.farm.configs.Inventories;
-import mc.ultimatecore.farm.configs.Messages;
+import com.cryptomorin.xseries.*;
+import lombok.*;
+import mc.ultimatecore.farm.commands.*;
+import mc.ultimatecore.farm.configs.*;
 import mc.ultimatecore.farm.guardians.Guardian;
-import mc.ultimatecore.farm.listeners.CropBreakListener;
-import mc.ultimatecore.farm.listeners.InventoryClickListener;
-import mc.ultimatecore.farm.managers.AddonsManager;
-import mc.ultimatecore.farm.managers.RegionsManager;
+import mc.ultimatecore.farm.listeners.*;
+import mc.ultimatecore.farm.managers.*;
 import mc.ultimatecore.farm.nms.*;
-import mc.ultimatecore.farm.utils.Utils;
-import mc.ultimatecore.helper.UltimatePlugin;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.HumanEntity;
-import org.bukkit.event.Listener;
+import mc.ultimatecore.farm.utils.*;
+import mc.ultimatecore.helper.*;
+import org.bukkit.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
 
-import java.util.Optional;
+import java.util.*;
 
 @Getter
 public class HyperRegions extends UltimatePlugin {
 
+    @Getter
     private static HyperRegions instance;
     private Config configuration;
     private Messages messages;
@@ -33,10 +29,6 @@ public class HyperRegions extends UltimatePlugin {
     private CommandManager commandManager;
     private Guardians guardians;
     private NMS nms;
-
-    public static HyperRegions getInstance() {
-        return instance;
-    }
 
     @Override
     public void onEnable() {
@@ -65,11 +57,7 @@ public class HyperRegions extends UltimatePlugin {
     }
 
     private void loadNMS() {
-        try {
-            nms = (NMS) Class.forName("mc.ultimatecore.farm.nms." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]).newInstance();
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-            getLogger().warning("Unsupported Version Detected: " + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
-        }
+        nms = new VersionMatcher().match();
     }
 
     @Override
